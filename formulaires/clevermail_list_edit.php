@@ -16,26 +16,26 @@ function formulaires_clevermail_list_edit_charger_dist($lst_id = -1) {
     $cm_mail_admin = sql_getfetsel('set_value', 'spip_cm_settings', 'set_name="CM_MAIL_ADMIN"');
     	if (defined('_CLEVERMAIL_NOUVEAUTES_HTML_OPTION')) {
 			if (_CLEVERMAIL_DISTANT) {
-				$url_html = url_absolue(generer_url_public(_CLEVERMAIL_NOUVEAUTES_HTML,_CLEVERMAIL_NOUVEAUTES_HTML_OPTION));
+				$url_html = generer_url_public(_CLEVERMAIL_NOUVEAUTES_HTML,_CLEVERMAIL_NOUVEAUTES_HTML_OPTION);
 			} else {
 				$url_html = _CLEVERMAIL_NOUVEAUTES_HTML;
 			}
 		} else {
 			if (_CLEVERMAIL_DISTANT) {
-				$url_html = url_absolue(generer_url_public(_CLEVERMAIL_NOUVEAUTES_HTML));
+				$url_html = generer_url_public(_CLEVERMAIL_NOUVEAUTES_HTML);
 			} else {
 				$url_html = _CLEVERMAIL_NOUVEAUTES_HTML;
 			}
 		}
 		if (defined('_CLEVERMAIL_NOUVEAUTES_TEXT_OPTION')) {
 			if (_CLEVERMAIL_DISTANT) {
-				$url_text = url_absolue(generer_url_public(_CLEVERMAIL_NOUVEAUTES_TEXT,_CLEVERMAIL_NOUVEAUTES_TEXT_OPTION));
+				$url_text = generer_url_public(_CLEVERMAIL_NOUVEAUTES_TEXT,_CLEVERMAIL_NOUVEAUTES_TEXT_OPTION);
 			} else {
 				$url_text = _CLEVERMAIL_NOUVEAUTES_TEXT;
 			}
 		} else {
 			if (_CLEVERMAIL_DISTANT) {
-				$url_text = url_absolue(generer_url_public(_CLEVERMAIL_NOUVEAUTES_TEXT));
+				$url_text = generer_url_public(_CLEVERMAIL_NOUVEAUTES_TEXT);
 			} else {
 				$url_text = _CLEVERMAIL_NOUVEAUTES_TEXT;
 			}
@@ -58,7 +58,7 @@ function formulaires_clevermail_list_edit_charger_dist($lst_id = -1) {
 			'lst_auto_week_days' => array(1),
 		  'lst_auto_month_day' => 1,
 		  'lst_auto_subscribers' => '',
-		  'lst_auto_subscribers_mode' => 1
+		  'lst_auto_subscribers_mode' => 0
 		);
 	}
 	return $valeurs;
