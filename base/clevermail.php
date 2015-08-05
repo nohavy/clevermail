@@ -10,6 +10,8 @@ function clevermail_declarer_tables_interfaces($interface){
 	$interface['table_des_tables']['cm_posts_queued']='cm_posts_queued';
 	$interface['table_des_tables']['cm_settings']='cm_settings';
 	$interface['table_des_tables']['cm_subscribers']='cm_subscribers';
+	$interface['table_des_tables']['cm_champ_exercice']='cm_champ_exercice';
+	$interface['table_des_tables']['cm_territoire']='cm_territoire';
 	return $interface;
 }
 
@@ -38,7 +40,7 @@ function clevermail_declarer_tables_objets_sql($tables) {
 			"lst_auto_week_days" => "VARCHAR(13) NOT NULL default '1'", // concatenation numeros des jours, 0 = dimanche
 			"lst_auto_month_day" => "TINYINT(2) NOT NULL default '1'",
 			"lst_auto_subscribers" => "VARCHAR(255) NOT NULL",
-			"lst_auto_subscribers_mode" => "TINYINT(1) NOT NULL default '0'",
+			"lst_auto_subscribers_mode" => "TINYINT(1) NOT NULL default '1'",
 			"lst_auto_subscribers_updated" => "int(11) NOT NULL default '0'"
 		),
 		'key' => array(
@@ -157,12 +159,40 @@ function clevermail_declarer_tables_objets_sql($tables) {
 		'field'=> array(
 			  "sub_id" => "bigint(20) NOT NULL auto_increment",
 			  "sub_email" => "varchar(255) NOT NULL",
+			  "sub_champ_exercice" => "varchar(255) DEFAULT '' NULL",
+			  "sub_territoire" => "varchar(255) DEFAULT '' NULL",
 			  "sub_profile" => "varchar(32) DEFAULT '' NOT NULL"
 			),
 		'key' => array(
 			"PRIMARY KEY" => "sub_id",
 			  "KEY sub_profile" => "sub_profile",
 			  "KEY sub_email" => "sub_email")
+		);
+
+	// spip_cm_champ_exercice
+	
+	$tables["spip_cm_champ_exercice"]=array(
+		'principale' => "oui",
+		'field'=> array(
+			  "id" => "bigint(20) NOT NULL",
+			  "name" => "varchar(255) NOT NULL"
+			),
+		'key' => array(
+			//"PRIMARY KEY" => "id"
+			)
+		);
+
+	// spip_cm_territoire
+	
+	$tables["spip_cm_territoire"]=array(
+		'principale' => "oui",
+		'field'=> array(
+			  "id" => "bigint(20) NOT NULL",
+			  "name" => "varchar(255) NOT NULL"
+			),
+		'key' => array(
+			//"PRIMARY KEY" => "id"
+			)
 		);
 
 return $tables;

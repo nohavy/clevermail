@@ -8,7 +8,7 @@ function clevermail_upgrade($nom_meta_base_version, $version_cible) {
 	$maj['create'] = array(
 		array('maj_tables', array('spip_cm_lists','spip_cm_lists_subscribers','spip_cm_pending'
 	,'spip_cm_posts','spip_cm_posts_done','spip_cm_posts_links'
-	,'spip_cm_posts_queued','spip_cm_settings','spip_cm_subscribers')),
+	,'spip_cm_posts_queued','spip_cm_settings','spip_cm_subscribers','spip_cm_champ_exercice','spip_cm_territoire')),
 		array('peupler_base_0_0_1',array())
 
 	);
@@ -51,6 +51,9 @@ function clevermail_upgrade($nom_meta_base_version, $version_cible) {
 	$maj['0.9.0'] = array(
 		array('sql_alter',"TABLE spip_cm_lists DROP lst_subject")
     	);
+	$maj['0.9.1'] = array(
+		array('sql_alter',"TABLE spip_cm_lists CHANGE lst_auto_subscribers_mode lst_auto_subscribers_mode TINYINT(1) DEFAULT 1 NOT NULL;")
+    	);
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
  }
@@ -68,6 +71,27 @@ function peupler_base_0_0_1()
 	      sql_insertq('spip_cm_settings',  array('set_name' => 'CM_MAIL_RETURN', 'set_value' => $GLOBALS['meta']['email_webmaster']));
 	  }
       sql_insertq('spip_cm_settings',  array('set_name' => 'CM_SEND_NUMBER', 'set_value' => 50));
+
+      // champ exercice
+      sql_insertq('spip_cm_champ_exercice', array('id' => 10, 'name' => 'Domaine de la santé/handicap'));
+      sql_insertq('spip_cm_champ_exercice', array('id' => 20, 'name' => "Domaine de l'éducation/insertion"));
+      sql_insertq('spip_cm_champ_exercice', array('id' => 30, 'name' => 'Domaine social'));
+      sql_insertq('spip_cm_champ_exercice', array('id' => 40, 'name' => 'Domaine de la prévention'));
+      sql_insertq('spip_cm_champ_exercice', array('id' => 50, 'name' => 'Domaine de la justice et de la sécurité publique'));
+      sql_insertq('spip_cm_champ_exercice', array('id' => 60, 'name' => 'Domaine de la communication'));
+      sql_insertq('spip_cm_champ_exercice', array('id' => 70, 'name' => 'Domaine de la recherche'));
+      sql_insertq('spip_cm_champ_exercice', array('id' => 80, 'name' => 'Domaine de la santé publique'));
+      sql_insertq('spip_cm_champ_exercice', array('id' => 90, 'name' => 'Autre'));
+
+      // territoire
+		sql_insertq('spip_cm_territoire', array('id' => 10, 'name' => 'France hexagonale')); 
+		sql_insertq('spip_cm_territoire', array('id' => 20, 'name' => 'La Réunion')); 
+		sql_insertq('spip_cm_territoire', array('id' => 30, 'name' => 'Martinique')); 
+		sql_insertq('spip_cm_territoire', array('id' => 40, 'name' => 'Guadeloupe')); 
+		sql_insertq('spip_cm_territoire', array('id' => 50, 'name' => 'Guyane')); 
+		sql_insertq('spip_cm_territoire', array('id' => 60, 'name' => 'Mayotte')); 
+		sql_insertq('spip_cm_territoire', array('id' => 70, 'name' => "Collectivité d'Outre-Mer")); 
+		sql_insertq('spip_cm_territoire', array('id' => 80, 'name' => 'International'));
 }
 
 
@@ -81,6 +105,7 @@ function clevermail_vider_tables($nom_meta_base_version) {
   sql_drop_table('spip_cm_posts_queued');
   sql_drop_table('spip_cm_settings');
   sql_drop_table('spip_cm_subscribers');
+  sql_drop_table('spip_cm_champ_exercice');
   effacer_meta($nom_meta_base_version);
   spip_log('Suppression des tables du plugin CleverMail', 'clevermail');
 }

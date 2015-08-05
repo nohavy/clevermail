@@ -1,7 +1,7 @@
 <?php
 include_spip('base/abstract_sql');
 function formulaires_clevermail_charger_dist($lst_id_force = 0, $lsr_mode_force = false, $cbox='') {
-	$default = array('lsr_mode' => 0, 'sub_email' => '', 'lst_id_force' => 0, 'lst_ids' => array());
+	$default = array('lsr_mode' => 1, 'sub_email' => '', 'lst_id_force' => 0, 'lst_ids' => array());
 	if ($cbox == 'box') {
 	  $default['cbox'] = $cbox;
 	}
@@ -45,6 +45,12 @@ function formulaires_clevermail_verifier_dist($lst_id = 0, $lsr_mode_force = fal
   if (!_request('sub_email')) {
     $erreurs['sub_email'] = _T('clevermail:ce_champ_est_obligatoire');
   }
+  if (!_request('sub_champ_exercice')) {
+    $erreurs['sub_champ_exercice'] = _T('clevermail:ce_champ_est_obligatoire');
+  }
+  if (!_request('sub_territoire')) {
+    $erreurs['sub_territoire'] = _T('clevermail:ce_champ_est_obligatoire');
+  }
   include_spip('inc/filtres');
   if (_request('sub_email') && !email_valide(_request('sub_email'))) {
     $erreurs['sub_email'] = _T('clevermail:cette_adresse_email_n_est_pas_valide');
@@ -64,7 +70,8 @@ function formulaires_clevermail_traiter_dist($lst_id = 0, $lsr_mode_force = fals
 	}
 	else {
 		// Nouvelle adresse e-mail
-		$sub_id = intval(sql_insertq("spip_cm_subscribers", array('sub_email' => _request('sub_email'))));
+		$sub_id = intval(sql_insertq("spip_cm_subscribers", array('sub_email' => _request('sub_email'), 
+				'sub_champ_exercice' => _request('sub_champ_exercice'), 'sub_territoire' => _request('sub_territoire'))));
 		sql_updateq("spip_cm_subscribers", array('sub_profile' => md5($sub_id.'#'.sql_quote(_request('sub_email')).'#'.time())), "sub_id=".intval($sub_id));
 	}
 	

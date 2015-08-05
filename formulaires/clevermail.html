@@ -1,7 +1,7 @@
 <a id="#FORM"></a>
 <div class="formulaire_spip formulaire_editer formulaire_#FORM" id="formulaire_#FORM-#ENV{id,new}">
   [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})[<br /><a href="(#SELF)"><:clevermail:procedure_termine:></a>]</p>]
-  [(#ENV{editable})
+  
 	  [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})[<br /><a href="(#SELF)"><:clevermail:procedure_termine:></a>]</p>]
 	  <form action="[(#ENV{action}|ancre_url{#FORM})]" method="post" enctype="multipart/form-data"><div>
 	    #ACTION_FORMULAIRE{#ENV{action}}
@@ -24,6 +24,35 @@
 	          [<span class='erreur_message'>(#GET{erreurs})</span>]
             <input type="text" class="text" name="#GET{name}" id="#GET{name}" size="50" maxlength="255" value="#ENV{#GET{name}}" />
 	        </li>
+
+	        #SET{name,sub_champ_exercice}
+	        #SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+	        #SET{obli,'obligatoire'}
+	        <li class="editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+	          <label for="#GET{name}"><:clevermail:champ_exercice:></label>
+	          [<span class='erreur_message'>(#GET{erreurs})</span>]
+			<select id="#GET{name}" name="#GET{name}">
+		 	  <option value=""></option>
+		 	  <BOUCLE_listsexercice(CM_CHAMP_EXERCICE){par id}>
+		 	    <option value="#NAME">#NAME</option>
+		 	  </BOUCLE_listsexercice>
+		 	</select>
+	        </li>
+
+	        #SET{name,sub_territoire}
+	        #SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+	        #SET{obli,'obligatoire'}
+	        <li class="editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
+	          <label for="#GET{name}"><:clevermail:territoire:></label>
+	          [<span class='erreur_message'>(#GET{erreurs})</span>]
+					<select id="#GET{name}" name="#GET{name}">
+				 	  <option value=""></option>
+				 	  <BOUCLE_liststerritoire(CM_TERRITOIRE){par id}>
+				 	    <option value="#NAME">#NAME</option>
+				 	  </BOUCLE_liststerritoire>
+				 	</select>
+	        </li>
+
           [(#ENV{lsr_mode_force}|non)
 	          #SET{name,lsr_mode}
 		        #SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
@@ -31,20 +60,20 @@
 		        <li class="editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
 		          <label><:clevermail:label_inscription_version:></label>
 		          [<span class='erreur_message'>(#GET{erreurs})</span>]
-		            #SET{value,0}
-		            <div class="choix">
-		              <input type="radio" name="#GET{name}" id="#GET{name}#GET{value}" class="radio" value="#GET{value}"[ (#ENV{#GET{name}}|=={#GET{value}}|oui)checked="checked"] />
-		              <label for="#GET{name}#GET{value}"><:clevermail:choix_version_texte|ucfirst:></label>
-		            </div>
 		            #SET{value,1}
 		            <div class="choix">
 		              <input type="radio" name="#GET{name}" id="#GET{name}#GET{value}" class="radio" value="#GET{value}"[ (#ENV{#GET{name}}|=={#GET{value}}|oui)checked="checked"] />
 		              <label for="#GET{name}#GET{value}"><:clevermail:choix_version_html:></label>
+		            </div>
+		            #SET{value,0}
+		            <div class="choix">
+		              <input type="radio" name="#GET{name}" id="#GET{name}#GET{value}" class="radio" value="#GET{value}"[ (#ENV{#GET{name}}|=={#GET{value}}|oui)checked="checked"] />
+		              <label for="#GET{name}#GET{value}"><:clevermail:choix_version_texte|ucfirst:></label>
 		            </div>
 		        </li>
 	        ]
 	      </ul>
 	      <p class="boutons"><span class="image_loading">&nbsp;</span><input type="submit" class="submit" value="<:clevermail:bouton_inscription:>" /></p>
 	  </div></form>
-	]
+	
 </div>

@@ -22,6 +22,32 @@
 					[<span class='erreur_message'>(#GET{erreurs})</span>]
 					<textarea name="#GET{name}" id="#GET{name}" cols="80" rows="10" wrap="virtual" class="textarea">#ENV{#GET{name}}</textarea>
 				</li>
+
+				#SET{name,cm_champ_exercice}
+				#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				#SET{obli,'obligatoire'}
+				<li>
+					<label for="#GET{name}"><:clevermail:champ_exercice:></label>
+					<select id="#GET{name}" name="#GET{name}">
+				 	  <option value=""></option>
+				 	  <BOUCLE_listsexercice(CM_CHAMP_EXERCICE){par id}>
+				 	    <option value="#NAME">#NAME</option>
+				 	  </BOUCLE_listsexercice>
+				 	</select>
+				</li>
+
+				#SET{name,cm_territoire}
+				#SET{erreurs,#ENV**{erreurs}|table_valeur{#GET{name}}}
+				#SET{obli,''}
+				<li>
+					<label for="#GET{name}"><:clevermail:territoire:></label>
+					<select id="#GET{name}" name="#GET{name}">
+				 	  <option value=""></option>
+				 	  <BOUCLE_liststerritoire(CM_TERRITOIRE){par id}>
+				 	    <option value="#NAME">#NAME</option>
+				 	  </BOUCLE_liststerritoire>
+				 	</select>
+				</li>
 			</ul>
     </fieldset>
     <fieldset>
@@ -46,15 +72,15 @@
          <li class="editer_[(#GET{name})][ (#GET{obli})][ (#GET{erreurs}|oui)erreur]">
            <label for="#GET{name}"><:clevermail:mode:></label>
            [<span class='erreur_message'>(#GET{erreurs})</span>]
-           #SET{value,0}
-           <div class="choix">
-	           <input type="radio" name="#GET{name}" id="#GET{name}#GET{value}" class="radio" value="#GET{value}"[ (#ENV{#GET{name}}|=={#GET{value}}|oui)checked="checked"] />
-	           <label for="#GET{name}#GET{value}"><:clevermail:choix_version_texte:></label>
-	         </div>
            #SET{value,1}
 	         <div class="choix">
 	           <input type="radio" name="#GET{name}" id="#GET{name}#GET{value}" class="radio" value="#GET{value}"[ (#ENV{#GET{name}}|=={#GET{value}}|oui)checked="checked"] />
 	           <label for="#GET{name}#GET{value}"><:clevermail:choix_version_html:></label>
+	         </div>
+           #SET{value,0}
+           <div class="choix">
+	           <input type="radio" name="#GET{name}" id="#GET{name}#GET{value}" class="radio" value="#GET{value}"[ (#ENV{#GET{name}}|=={#GET{value}}|oui)checked="checked"] />
+	           <label for="#GET{name}#GET{value}"><:clevermail:choix_version_texte:></label>
 	         </div>
          </li>
 	     </ul>

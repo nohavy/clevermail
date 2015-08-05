@@ -5,7 +5,7 @@ function formulaires_clevermail_subscriber_new_charger_dist() {
 	$valeurs = array(
 		'cm_file' => '',
 	  'cm_subs' => '',
-	  'cm_mode' => 0,
+	  'cm_mode' => 1,
 	  'cm_lists' => array()
 	);
 
@@ -46,7 +46,7 @@ function formulaires_clevermail_subscriber_new_traiter_dist() {
   if (_request('cm_subs')) {
     $adresses .= "\n"._request('cm_subs');
   }
-  $retour = clevermail_abonnes_ajout(_request('cm_lists'), intval(_request('cm_mode')), $adresses);
+  $retour = clevermail_abonnes_ajout_plus(_request('cm_lists'), intval(_request('cm_mode')), $adresses, _request('cm_champ_exercice'), _request('cm_territoire'));
 
   if ($retour === false) {
   	$msg = _T('clevermail:aucun_nouvel_abonne');
