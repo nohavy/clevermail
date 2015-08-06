@@ -1,7 +1,7 @@
 <paquet
 	prefix="clevermail"
 	categorie="communication"
-	version="3.0.12"
+	version="3.1.12"
 	etat="stable"
 	compatibilite="[3.0.0;3.1.*]"
 	logo="prive/themes/spip/images/fatcow/32/email_open.png"
@@ -15,6 +15,7 @@
 	<auteur>Thomas Beaumanoir</auteur>
 	<auteur>Nicolas Hoizey</auteur>
 	<auteur>Stéphanie Caron</auteur>
+	<auteur>Nicolas Clain</auteur>
 	<auteur lien="http://www.clever-age.com/">Clever Age</auteur>
 	<credit lien="http://www.fatcow.com/free-icons">Ic&#244;nes issues de la collection FatCow.</credit>
 
