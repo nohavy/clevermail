@@ -1,0 +1,14 @@
+<div class="formulaire_spip formulaire_#FORM">
+	[(#ENV{editable}|oui) <h3>Merci de préciser les raisons (plusieurs choix possibles) de votre désinscription à #ENV{list_name}</h3> ]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+	[(#ENV{editable}|oui)
+		<form action="#ENV{action}" method="post">
+			<div>
+				#ACTION_FORMULAIRE{#ENV{action}}
+				<INCLURE{fond=noisettes/choice_unsubscribe}{env} />
+				<p class="boutons"><input type="submit" class="submit" value="Valider la désinscription" /></p>
+			</div>
+		</form>
+	]
+</div>

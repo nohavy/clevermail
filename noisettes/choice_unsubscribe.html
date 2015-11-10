@@ -1,0 +1,31 @@
+<script type="text/javascript">
+function showDiv($this) {
+	if($this.value==5 && $this.checked) {
+    	document.getElementById('autre').style.display = 'block';		
+	}
+	if($this.value==5 && !$this.checked) {
+    	document.getElementById('autre').style.display = 'none';
+	}
+};
+</script>
+<B_choix>
+	#SET{erreurs,#ENV**{erreurs}|table_valeur{choices_unsubscribe}}
+	<div class="editer editer_choix obligatoire[ (#GET{erreurs}|oui)erreur]">
+		<BOUCLE_choix(spip_cm_choice_unsubscribe)>
+	    	<div>
+	    		<input type='checkbox' name='choices_unsubscribe[]' value='#ID'
+	    			[ (#EVAL{_request('choices_unsubscribe')}|find{#ID}|oui)checked="checked"]
+	    			onclick="showDiv(this)"/>
+	    		<label for='#ID'>#NOM</label>
+	    	</div>
+		</BOUCLE_choix>
+	[<span class='erreur_message'>(#GET{erreurs})</span>]
+
+	#SET{erreur_autre,#ENV**{erreurs}|table_valeur{autre}}
+	<div id='autre' style=[(#EVAL{_request('choices_unsubscribe')}|find{5}|?{'display:block','display:none'})] class="obligatoire[ (#GET{erreur_autre}|oui)erreur]">
+		<textarea rows="3" name='autre' cols="40">#EVAL{_request('autre')}</textarea>
+	</div>
+	[<span class='erreur_message'>(#GET{erreur_autre})</span>]
+
+	</div>
+</B_choix>

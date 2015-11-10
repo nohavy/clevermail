@@ -78,6 +78,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'choix_toutes_les_listes' => 'Toutes les listes',
 	'choix_version_html' => 'HTML',
 	'choix_version_texte' => 'texte brut',
+	'choix_obligatoire' => 'Choix obligatoire',
 	'clevermail' => 'CleverMail',
 	'configuration_generale' => 'Configuration générale',
 	'confirmation_desinscription' => 'Confirmation d’une désinscription envoyé par e-mail',

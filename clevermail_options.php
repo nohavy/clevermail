@@ -9,6 +9,7 @@
 @define("_CLEVERMAIL_PREVIEW_HTML", 'clevermail_post_preview_html');
 @define("_CLEVERMAIL_PREVIEW_TEXTE", 'clevermail_post_preview_text');
 @define("_CLEVERMAIL_VALIDATION", 'clevermail_do');
+@define("_CLEVERMAIL_UNSUBSCRIBE", 'clevermail_unsubscribe');
 @define("_CLEVERMAIL_INVALIDATION", 'clevermail_rm');
 // par defaut la date de calcul des squelettes de lettre
 // est place sur la date du dernier envoi (1970 s'il n'y en a pas avant).
