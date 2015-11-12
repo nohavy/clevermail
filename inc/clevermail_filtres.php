@@ -26,4 +26,19 @@ function cm_date($timestamp) {
 function cm_heure($timestamp) {
   return date('H:i', $timestamp);
 }
+
+function unsubscribe_why($v){
+  if($v) {
+    $results = '<ul>';
+    $choices = explode(':', $v);
+    foreach ($choices as $value) {
+      $choice_unsubscribe_nom = sql_getfetsel("nom", "spip_cm_choice_unsubscribe", "id = ".intval($value));
+      $results .= '<li>' . $choice_unsubscribe_nom . '</li>';
+    }
+    $results .= '</ul>';
+    return $results;
+  }
+  return '';
+}
+
 ?>

@@ -79,6 +79,7 @@ function formulaires_clevermail_unsubscribe_why_traiter_dist() {
       array('sub_email' => $sub['sub_email'], 
         'sub_champ_exercice' => $sub['sub_champ_exercice'], 
         'sub_territoire' => $sub['sub_territoire'], 
+        'lst_id' => $action['lst_id'],
         'date_unsubscribe' => date('Y-m-d H:i:s'),
         'choices_unsubscribe' => implode(':', $_POST['choices_unsubscribe']),
         'choices_autre' => $_POST['autre']

@@ -42,6 +42,10 @@ h4 {
   background: url(../prive/themes/spip/images/fatcow/16/user_add.png) top left no-repeat;
 }
 
+.clevermail_menu .unsubscribed_list {
+  background: url(../prive/themes/spip/images/fatcow/16/unsubscribed.png) top left no-repeat;
+}
+
 .clevermail_menu .parametres {
   background: url(../prive/themes/spip/images/fatcow/16/gear_in.png) top left no-repeat;
 }
@@ -111,4 +115,9 @@ h4 {
 
 .liste_messages .actions li.message_envoyer {
   background: url(../prive/themes/spip/images/fatcow/16/page_white_go.png) top left no-repeat;
+}
+
+
+table.unsubscribed tr td ul {
+  list-style: initial;
 }

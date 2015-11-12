@@ -1,0 +1,53 @@
+<!--#hierarchie-->
+<ul id="chemin">
+  <li><a href="#URL_ECRIRE{clevermail}"><:clevermail:administration:></a></li>
+  <li>&gt;  <:clevermail:unsubscribed_list:></li>
+</ul>
+<!--/#hierarchie-->
+<h1><:clevermail:unsubscribed_list:></h1>
+<form action="[(#URL_ECRIRE{clevermail_unsubscribed_list}|parametre_url{filtre_email,#ENV{filtre_email}}|parametre_url{filtre_champ_exercice,#ENV{filtre_champ_exercice}}|parametre_url{filtre_territoire,#ENV{filtre_territoire}}|parametre_url{lst_id,#ENV{lst_id}}|parametre_url{ok,#ENV{ok}})]" method="get">
+  <input type="hidden" id="exec" name="exec" value="clevermail_unsubscribed_list" />
+
+    <div>
+	 	<label for="filtre_email">Filtre sur l'adresse e-mail : </label>
+	 	<input type="text" id="filtre_email" name="filtre_email" value="#ENV{filtre_email}" size="20" /><br />
+	</div>
+	<div>
+	 	<label for="filtre_champ_exercice">Filtre sur le champ d'exercice : </label>
+	 	<select id="filtre_champ_exercice" name="filtre_champ_exercice">
+	 	  <option value=""></option>
+	 	  <BOUCLE_listsexercice(CM_CHAMP_EXERCICE){par id}>
+	 	    <option value="#NAME"[ (#NAME|=={#ENV*{filtre_champ_exercice}}|oui)selected="selected"]>#NAME</option>
+	 	  </BOUCLE_listsexercice>
+	 	</select>
+    </div>
+    <div>
+	 	<label for="filtre_territoire">Filtre sur territoire : </label>
+	 	<select id="filtre_territoire" name="filtre_territoire">
+	 	  <option value=""></option>
+	 	  <BOUCLE_liststerritoire(CM_TERRITOIRE){par id}>
+	 	    <option value="#NAME"[ (#NAME|=={#ENV*{filtre_territoire}}|oui)selected="selected"]>#NAME</option>
+	 	  </BOUCLE_liststerritoire>
+	 	</select>
+	</div>
+	<div>
+	 	<label for="lst_id">Filtre sur la liste : </label>
+	 	<select id="lst_id" name="lst_id">
+	 	  <option value=""><:clevermail:choix_toutes_les_listes:></option>
+	 	  <BOUCLE_lists(CM_LISTS){par lst_name}>
+	 	    <option value="#LST_ID"[ (#LST_ID|=={#ENV{lst_id}}|oui)selected="selected"]>#LST_NAME</option>
+	 	  </BOUCLE_lists>
+	 	</select>
+ 	</div>
+ 	<input type="submit" id="ok" name="ok" value="filtrer !" />
+ </form>
+ <br />
+ <INCLURE{fond=prive/listes/clevermail_unsubcribed}{env}>
+
+<!--#navigation-->
+<INCLURE{fond=prive/menu}>
+<!--/#navigation-->
+
+<!--#extra-->
+
+<!--/#extra-->

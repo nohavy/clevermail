@@ -1,0 +1,30 @@
+<B_subs>
+  #ANCRE_PAGINATION
+	#PAGINATION{page}
+	<table class="unsubscribed">
+	  <thead>
+	  <tr>
+	    <th><:clevermail:emails:></th>
+	    <th><:clevermail:champ_exercice:></th>
+	    <th><:clevermail:territoire:></th>
+	    <th><:clevermail:infolettres:></th>
+	    <th><:clevermail:date_unsubscribe:></th>
+	    <th><:clevermail:choices_unscribe:></th>
+	    <th><:clevermail:choices_autre:></th>
+	   </tr>
+	  </thead>
+	  <tbody>
+			<BOUCLE_subs(spip_cm_unsubscribe_why cm_lists){lst_id?}{sub_email==#ENV{filtre_email,.*}}{par sub_email}{sub_champ_exercice==#ENV*{filtre_champ_exercice,.*}}{sub_territoire==#ENV*{filtre_territoire,.*}}{pagination 20}>
+		    <tr class="[(#COMPTEUR_BOUCLE|alterner{impair,pair})]">
+		      <td>#SUB_EMAIL</td>
+          	  <td>#SUB_CHAMP_EXERCICE</td>
+          	  <td>#SUB_TERRITOIRE</td>
+          	  <td>#LST_NAME</td>
+          	  <td>[(#DATE_UNSUBSCRIBE|affdate{'d/m/Y h:m:s'})]</td>
+          	  <td>[(#CHOICES_UNSUBSCRIBE|unsubscribe_why)]</td>
+          	  <td>#CHOICES_AUTRE</td>
+		    </tr>
+			</BOUCLE_subs>
+		</tbody>
+	</table>
+</B_subs>

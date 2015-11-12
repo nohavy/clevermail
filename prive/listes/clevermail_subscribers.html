@@ -14,7 +14,7 @@
 	   </tr>
 	  </thead>
 	  <tbody>
-			<BOUCLE_subs(CM_LISTS_SUBSCRIBERS cm_subscribers cm_lists){lst_id?}{sub_email==#ENV{filtre_email,.*}}{par sub_email}{sub_champ_exercice==#ENV*{filtre_champ_exercice,.*}}{sub_territoire==#ENV*{filtre_territoire,.*}}{pagination 10}>
+			<BOUCLE_subs(CM_LISTS_SUBSCRIBERS){lst_id?}{sub_email==#ENV{filtre_email,.*}}{par sub_email}{sub_champ_exercice==#ENV*{filtre_champ_exercice,.*}}{sub_territoire==#ENV*{filtre_territoire,.*}}{pagination 10}>
 		    <tr class="[(#COMPTEUR_BOUCLE|alterner{impair,pair})]">
 		      <td>#SUB_EMAIL</td>
           	  <td>#SUB_CHAMP_EXERCICE</td>

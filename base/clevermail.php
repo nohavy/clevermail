@@ -204,6 +204,7 @@ function clevermail_declarer_tables_objets_sql($tables) {
 			  "sub_email" => "varchar(255) NOT NULL",
 			  "sub_champ_exercice" => "varchar(255) NOT NULL",
 			  "sub_territoire" => "varchar(255) NOT NULL",
+			  "lst_id" => "int(11) NOT NULL",
 			  "date_unsubscribe" => "datetime NOT NULL",
 			  "choices_unsubscribe" => "text NOT NULL",
 			  "choices_autre" => "text NOT NULL",
