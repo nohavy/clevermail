@@ -195,6 +195,43 @@ function clevermail_declarer_tables_objets_sql($tables) {
 			)
 		);
 
+
+	// gestion unsubscribe
+	$tables["spip_cm_unsubscribe_why"]=array(
+		'principale' => "oui",
+		'field'=> array(
+			  "id" => "int(11) NOT NULL",  
+			  "sub_email" => "varchar(255) NOT NULL",
+			  "sub_champ_exercice" => "varchar(255) NOT NULL",
+			  "sub_territoire" => "varchar(255) NOT NULL",
+			  "date_unsubscribe" => "datetime NOT NULL",
+			  "choices_unsubscribe" => "text NOT NULL",
+			  "choices_autre" => "text NOT NULL",
+			),
+		'key' => array(
+			"PRIMARY KEY" => "id"
+			)
+		);
+
+	$tables["spip_cm_choice_unsubscribe"]=array(
+		'principale' => "oui",
+		'field'=> array(
+			  "id" => "int(11) NOT NULL",
+			  "nom" => "varchar(255) NOT NULL"
+			),
+		'key' => array(
+			"PRIMARY KEY" => "id"
+			)
+		);
+
+		// INSERT INTO `spip_cm_choice_unsubscribe` (`id`, `nom`) VALUES
+		// (0, 'Envois trop fréquents'),
+		// (1, 'Contenu ne correspondant pas à mes attentes'),
+		// (2, 'Pas le temps de lire'),
+		// (3, 'Pas intéressé(e) par les thématiques'),
+		// (4, 'N''exerce plus dans le domaine'),
+		// (5, 'Autre(s)');
+
 return $tables;
 }
 

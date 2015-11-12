@@ -10,22 +10,22 @@ function showDiv($this) {
 </script>
 <B_choix>
 	#SET{erreurs,#ENV**{erreurs}|table_valeur{choices_unsubscribe}}
-	<div class="editer editer_choix obligatoire[ (#GET{erreurs}|oui)erreur]">
+	<div class="editer editer_choix obligatoire[ (#GET{erreurs}|oui)reponse_formulaire_erreur]">
 		<BOUCLE_choix(spip_cm_choice_unsubscribe)>
 	    	<div>
 	    		<input type='checkbox' name='choices_unsubscribe[]' value='#ID'
 	    			[ (#EVAL{_request('choices_unsubscribe')}|find{#ID}|oui)checked="checked"]
 	    			onclick="showDiv(this)"/>
-	    		<label for='#ID'>#NOM</label>
+	    		<label for='#ID' style="display:inline">#NOM</label>
 	    	</div>
 		</BOUCLE_choix>
 	[<span class='erreur_message'>(#GET{erreurs})</span>]
 
 	#SET{erreur_autre,#ENV**{erreurs}|table_valeur{autre}}
-	<div id='autre' style=[(#EVAL{_request('choices_unsubscribe')}|find{5}|?{'display:block','display:none'})] class="obligatoire[ (#GET{erreur_autre}|oui)erreur]">
+	<div id='autre' style=[(#EVAL{_request('choices_unsubscribe')}|find{5}|?{'display:block','display:none'})] class="obligatoire">
 		<textarea rows="3" name='autre' cols="40">#EVAL{_request('autre')}</textarea>
 	</div>
-	[<span class='erreur_message'>(#GET{erreur_autre})</span>]
+	[<span class='reponse_formulaire_erreur'>(#GET{erreur_autre})</span>]
 
 	</div>
 </B_choix>
